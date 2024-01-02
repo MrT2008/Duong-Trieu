@@ -35,7 +35,7 @@ public class GameThread extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run() {         /*Lỗi không xóa màn hình cữ */
         if(score>=goal){
             Next();
         }else{

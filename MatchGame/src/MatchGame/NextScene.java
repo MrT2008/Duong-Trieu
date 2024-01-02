@@ -2,7 +2,7 @@ package MatchGame;
 
 //import Controls.SoundManager;
 
-import javax.swing.*;
+import javax.swing.*; 
 import java.awt.*;
 
 public class NextScene extends JFrame {

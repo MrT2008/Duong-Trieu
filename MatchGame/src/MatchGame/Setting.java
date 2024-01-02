@@ -81,9 +81,6 @@ public class Setting extends JPanel implements MouseListener, MouseMotionListene
         } else if (area2.contains(point)) {
             state=back;
             repaint();
-        // } else if(area3.contains(point)){   
-        //     state=setting;
-        //     repaint();
         } else{
             state=1;
             repaint();

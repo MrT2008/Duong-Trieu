@@ -6,18 +6,19 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage; 
 import java.io.IOException;
 
 public class NextMouse extends JPanel implements MouseListener, MouseMotionListener {
     // private NextScene gameWinFrame;
     JFrame frame;
+    private boolean isClicked;
     private MatchPanel matchPanel;
     private StatusPanel statusPanel;
     private Point mousePos = new Point(-1, -1);
     private Rectangle area,area2;
     private int play,exit,state;
-    private BufferedImage backgroundImage,playImage,exitImage;
+    private BufferedImage winImage,playImage,exitImage;
 
     public NextMouse(Rectangle area, Rectangle area2, JFrame jFrame) {
         // this.gameWinFrame = gameWinFrame;
@@ -31,7 +32,7 @@ public class NextMouse extends JPanel implements MouseListener, MouseMotionListe
         exit=3;
         // Load the background image
         try {
-            backgroundImage = ImageIO.read(getClass().getResourceAsStream("/res/win-NoMouse.png"));
+            winImage = ImageIO.read(getClass().getResourceAsStream("/res/win-NoMouse.png"));
             playImage=ImageIO.read(getClass().getResourceAsStream("/res/win-MouseOnPlayAgain.png"));
             exitImage=ImageIO.read(getClass().getResourceAsStream("/res/win-MouseOnExit.png"));
         } catch (IOException e) {
@@ -40,14 +41,10 @@ public class NextMouse extends JPanel implements MouseListener, MouseMotionListe
     }
 
     public void mouseClicked(MouseEvent e) {
-        if (area.contains(e.getPoint())) {
-            handleMouseEvent(e);          
-        } else if (area2.contains(e.getPoint())) {
-            System.exit(0);
-        }
+        // Do nothing
     }
     public void handleMouseEvent(MouseEvent e) {
-        frame.dispose();                /*Lỗi chỗ này */
+        frame.dispose();                
         startNewGame();
     }
     private void startNewGame() {
@@ -58,20 +55,34 @@ public class NextMouse extends JPanel implements MouseListener, MouseMotionListe
         }
     }
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        if (area.contains(e.getPoint())) {
+            handleMouseEvent(e);          
+        } else if (area2.contains(e.getPoint())) {
+            System.exit(0);
+        }
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        isClicked = false;
+        repaint();
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+        // Do nothing
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+        // Do nothing
+    }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        mousePos = e.getPoint();
+        repaint();
     }
 
     @Override
@@ -93,7 +104,7 @@ public class NextMouse extends JPanel implements MouseListener, MouseMotionListe
 
         // Draw the background image
         if(state==1) {
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            g.drawImage(winImage, 0, 0, getWidth(), getHeight(), this);
         }
         if(state==play){
             g.drawImage(playImage, 0, 0, getWidth(), getHeight(), this);
