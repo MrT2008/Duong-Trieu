@@ -26,24 +26,23 @@ public class GameThread extends Thread {
         this.matchBoard = matchBoard;
         this.statusPanel = statusPanel;
         running = false;
-//  level=1;
-  score=0;
-  goal=50;
-//        paused = false;
+        score=0;
+        goal=50;
         gameAreaFrame = (JFrame) SwingUtilities.getRoot(matchBoard);
         gameAreaFrame.setFocusable(true);
     }
 
-    @Override
-    public void run() {         /*Lỗi không xóa màn hình cữ */
-        if(score>=goal){
-            Next();
-        }else{
-            gameAreaFrame.dispose();
-            restart();
-        }
+    // @Override
+    // public void run() {         /*Lỗi không xóa màn hình cữ */
+    //     if(score>=goal){
+    //         gameAreaFrame.dispose();
+    //         // Next();
+    //     }else{
+    //         gameAreaFrame.dispose();
+    //         restart();
+    //     }
 
-    }
+    // }
     public static void setScore()
     {
         score=0;
@@ -98,7 +97,7 @@ public class GameThread extends Thread {
         level=1;
     }
     private void Next() {
-        NextScene gameWinFrame=new NextScene(matchBoard,this);
+        NextScene gameWinFrame = new NextScene(matchBoard,this);
     }
 
     public void restart() {

@@ -223,15 +223,6 @@ public class MatchPanel extends JPanel implements MouseListener {
         }
     }
 
-    /**
-     * Attempts to perform the swap between pos1 and pos2.
-     * If there are no matches from the swap the cells are reset and the state
-     * returns to inputting the first position.
-     * If one or more matches are found the cells are swapped, then all cells
-     * are shuffled down to fill any gaps based on matches. Then cells at the top
-     * are filled in with new random values. Then the timer is started to continue matching
-     * until there are no more matches.
-     */
     private void attemptCellSwap() {
         List<Position> matches = matchBoard.getMatchesFromSwap(pos1, pos2);
         updateScore(matches.size());
