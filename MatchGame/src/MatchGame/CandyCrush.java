@@ -3,15 +3,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Match Game
- * Author: Peter Mitchell (2021)
- *
- * Game class:
- * Entry point for creating the GUI and
- * associated panels. Also acts as the
- * inbetween point for communication between panels.
- */
+
 public class CandyCrush extends JFrame {
     public static void main(String[] args) {
         try {
@@ -22,12 +14,9 @@ public class CandyCrush extends JFrame {
         }
     }
 
-    /**
-     * Creates the JFrame, and the two panels then adds them and
-     * makes the frame visible.
-     */
+   
     public CandyCrush() {
-        PlayMouse panel = new PlayMouse( new Rectangle(320 - 30, 280, 250, 100),new Rectangle(320 - 30, 400, 250, 100),this);
+        PlayMouse panel = new PlayMouse(new Rectangle(320 - 30, 280, 250, 100),new Rectangle(320 - 30, 400, 250, 100), new Rectangle(20, 20, 50, 50),this);
         panel.setPreferredSize(new Dimension(960, 540));
 
         setVisible(true);
